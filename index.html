@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Stream Portal</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>
+
+    <style>
+        /* ফন্ট সেটআপ */
+        @font-face { font-family: 'Li Ador Noirrit Bold'; src: local('Li Ador Noirrit Bold'); }
+        @font-face { font-family: 'BUILT TITLING BD'; src: local('BUILT TITLING BD'); }
+
+        :root {
+            --bg-dark: #0f0f0f; 
+            --card-bg: #1e1e1e;
+            --primary-blue: #3ea6ff; 
+            --text-main: #ffffff; 
+            --text-dim: #aaaaaa;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body { 
+            background-color: var(--bg-dark); 
+            color: var(--text-main); 
+            padding-bottom: 50px; 
+            font-family: 'BUILT TITLING BD', 'Li Ador Noirrit Bold', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* আইকন বক্স (নীল গ্রেডিয়েন্ট) */
+        .social-nav-container { padding: 15px 15px 5px 15px; }
+        .social-blue-box {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            padding: 12px 20px; border-radius: 12px;
+            display: flex; justify-content: space-between; align-items: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+        }
+        .social-blue-box span { 
+            font-family: 'BUILT TITLING BD', sans-serif;
+            font-size: 13px; font-weight: bold; color: white; text-transform: uppercase; 
+        }
+        .social-icons-wrapper { display: flex; gap: 20px; }
+        .social-icons-wrapper a { color: white; font-size: 20px; text-decoration: none; transition: 0.3s; }
+
+        /* প্রোমো বক্স ও ডেসক্রিপশন */
+        .promo-box {
+            background: #181818;
+            margin: 15px; padding: 25px 20px; border-radius: 15px;
+            text-align: center; border: 1px solid #333;
+        }
+        .promo-box h2 { 
+            font-family: 'BUILT TITLING BD', sans-serif;
+            font-size: 28px; font-weight: 900; color: var(--primary-blue); margin-bottom: 12px; 
+        }
+        .promo-desc-bn { 
+            font-family: 'Li Ador Noirrit Bold', sans-serif;
+            font-size: 15px; color: #eee; line-height: 1.6; margin-bottom: 8px; 
+        }
+        .promo-desc-en { 
+            font-family: 'BUILT TITLING BD', sans-serif;
+            font-size: 11px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px; 
+        }
+
+        /* সার্চ বক্স */
+        .search-wrapper { padding: 0 15px 15px 15px; }
+        .search-container { position: relative; }
+        .search-container input {
+            width: 100%; padding: 14px 45px 14px 20px; background: #2a2a2a;
+            border: 1px solid #333; border-radius: 30px; color: white; outline: none;
+            font-family: 'Li Ador Noirrit Bold', sans-serif;
+        }
+        .search-container .fa-search { position: absolute; right: 20px; top: 50%; transform: translateY(-50%); color: var(--text-dim); }
+
+        /* ফিড এরিয়া */
+        .feed-container { max-width: 600px; margin: 0 auto; padding: 10px; }
+        .v-card { background: var(--card-bg); border-radius: 12px; overflow: hidden; margin-bottom: 30px; border: 1px solid #2a2a2a; }
+
+        .thumb-wrapper { position: relative; width: 100%; aspect-ratio: 16/9; background: #000; }
+        .thumb-img { width: 100%; height: 100%; object-fit: cover; }
+
+        .views-count {
+            position: absolute; bottom: 10px; right: 10px;
+            background: rgba(0, 0, 0, 0.7); color: var(--primary-blue);
+            padding: 3px 10px; border-radius: 5px; font-size: 11px; font-weight: bold;
+        }
+
+        /* 18+ Overlay */
+        .adult-overlay {
+            position: absolute; inset: 0; background: rgba(0,0,0,0.95);
+            backdrop-filter: blur(25px); z-index: 10;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+        }
+        .adult-label { background: var(--accent-red); padding: 5px 15px; border-radius: 4px; font-size: 13px; font-weight: bold; margin-bottom: 12px; }
+        .btn-show { background: white; color: black; border: none; padding: 8px 25px; border-radius: 20px; font-weight: bold; cursor: pointer; }
+
+        .card-info { padding: 18px; }
+        .tag-row { display: flex; gap: 8px; margin-bottom: 12px; flex-wrap: wrap; }
+        .tag { background: rgba(255,255,255,0.1); font-size: 10px; padding: 4px 10px; border-radius: 4px; color: var(--primary-blue); font-weight: bold; }
+        .video-title { font-family: 'Li Ador Noirrit Bold', sans-serif; font-size: 18px; font-weight: 500; margin-bottom: 15px; }
+
+        /* বাটন */
+        .btn-ad {
+            background: #2a2a2a; color: white; border: 1px solid #444; width: 100%;
+            padding: 15px; border-radius: 10px; font-weight: bold; cursor: pointer; font-family: 'BUILT TITLING BD', sans-serif;
+        }
+        .btn-open {
+            background: var(--primary-blue); color: #000; padding: 15px; width: 100%;
+            border-radius: 10px; font-weight: bold; text-align: center; text-decoration: none; display: none;
+            font-family: 'BUILT TITLING BD', sans-serif;
+        }
+        .btn-open.active { display: block; animation: pulse 1.5s infinite; }
+
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.02); } 100% { transform: scale(1); } }
+    </style>
+</head>
+<body>
+
+    <div class="social-nav-container">
+        <div class="social-blue-box">
+            <span>Our Social Community</span>
+            <div class="social-icons-wrapper">
+                <a id="fb-btn" href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a id="wa-btn" href="#" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                <a id="tg-btn" href="#" target="_blank"><i class="fab fa-telegram-plane"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="promo-box">
+        <h2>VIRAL VIDEO BOX</h2>
+        <p class="promo-desc-bn">
+            সকল ধরনের ভাইরাল হওয়া ভিডিও এবং প্রিমিয়াম শর্ট ফিল্ম (বাংলা, English, Hindi) এখন এক জায়গায়। সেরা সব কন্টেন্ট উপভোগ করুন সহজেই!
+        </p>
+        <p class="promo-desc-en">
+            Viral Clips • Premium Movies • Multi-Language • Short Films
+        </p>
+    </div>
+
+    <div class="search-wrapper">
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Search videos or batch..." onkeyup="filterContent()">
+            <i class="fas fa-search"></i>
+        </div>
+    </div>
+
+    <div class="feed-container" id="mainFeed">
+        <p style="text-align: center; color: var(--text-dim); font-family: 'Li Ador Noirrit Bold', sans-serif;">ভিডিও লোড হচ্ছে...</p>
+    </div>
+
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyBgdqnx_66alwh-VUMRcKFBePXGTZYAJAg",
+            authDomain: "deshi-viral-video.firebaseapp.com",
+            databaseURL: "https://deshi-viral-video-default-rtdb.firebaseio.com",
+            projectId: "deshi-viral-video",
+            storageBucket: "deshi-viral-video.firebasestorage.app",
+            messagingSenderId: "662634222290",
+            appId: "1:662634222290:web:d0d4ae45e581d095b9930b"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.database();
+        let adCounter = {};
+
+        function trackVisitor() {
+            const ref = document.referrer.toLowerCase();
+            let source = "direct";
+            if (ref.includes('facebook.com')) source = "fb";
+            else if (ref.includes('wa.me')) source = "wa";
+            else if (ref.includes('t.me')) source = "tg";
+            db.ref('trafficStats/total').transaction(c => (c || 0) + 1);
+            db.ref('trafficStats/' + source).transaction(c => (c || 0) + 1);
+        }
+
+        function initApp() {
+            db.ref('socialLinks').on('value', snap => {
+                const links = snap.val();
+                if(links) {
+                    document.getElementById('fb-btn').href = links.fb;
+                    document.getElementById('wa-btn').href = links.wa;
+                    document.getElementById('tg-btn').href = links.tg;
+                }
+            });
+
+            db.ref('contentDB').on('value', snap => {
+                const data = snap.val();
+                const feed = document.getElementById('mainFeed');
+                feed.innerHTML = "";
+                if(!data) return;
+
+                Object.keys(data).forEach(key => {
+                    const item = data[key];
+                    if(item.status !== "Active") return;
+                    adCounter[key] = item.ads;
+                    
+                    const card = document.createElement('div');
+                    card.className = 'v-card';
+                    card.setAttribute('data-title', item.title);
+
+                    const overlay = item.adult === "Yes" 
+                        ? `<div class="adult-overlay" id="overlay-${key}">
+                            <span class="adult-label">18+ CONTENT</span>
+                            <button class="btn-show" onclick="revealThumb('${key}')">SHOW</button>
+                           </div>` : '';
+
+                    card.innerHTML = `
+                        <div class="thumb-wrapper">
+                            ${overlay}
+                            <div class="views-count"><i class="fas fa-eye"></i> ${formatViews(item.views)}</div>
+                            <img src="${item.thumb}" class="thumb-img">
+                        </div>
+                        <div class="card-info">
+                            <div class="tag-row">${item.tags.split(',').map(t => `<span class="tag">${t.trim()}</span>`).join('')}</div>
+                            <h3 class="video-title">${item.title}</h3>
+                            <div class="action-area">
+                                <button class="btn-ad" id="btn-ad-${key}" onclick="processAd('${key}')">Watch Ads (${item.ads})</button>
+                                <a href="${item.target}" target="_blank" class="btn-open" id="btn-open-${key}" onclick="trackOpen('${key}')">OPEN CONTENT</a>
+                            </div>
+                        </div>`;
+                    feed.appendChild(card);
+                });
+            });
+        }
+
+        function formatViews(num) {
+            if (num >= 1000000) return (num / 1000000).toFixed(1) + 'M';
+            if (num >= 1000) return (num / 1000).toFixed(1) + 'K';
+            return num || 0;
+        }
+
+        function processAd(key) {
+            const btn = document.getElementById(`btn-ad-${key}`);
+            const openBtn = document.getElementById(`btn-open-${key}`);
+            adCounter[key]--;
+            btn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> LOADING...`;
+            btn.disabled = true;
+            setTimeout(() => {
+                if (adCounter[key] <= 0) { btn.style.display = 'none'; openBtn.classList.add('active'); }
+                else { btn.disabled = false; btn.innerHTML = `Watch Ads (${adCounter[key]})`; }
+            }, 1000); 
+        }
+
+        function trackOpen(key) { db.ref('contentDB/' + key + '/views').transaction(v => (v || 0) + 1); }
+        function revealThumb(key) { document.getElementById(`overlay-${key}`).style.display = 'none'; }
+        
+        function filterContent() {
+            let input = document.getElementById('searchInput').value.toLowerCase();
+            let cards = document.getElementsByClassName('v-card');
+            for (let i = 0; i < cards.length; i++) {
+                let title = cards[i].getAttribute('data-title').toLowerCase();
+                cards[i].style.display = title.includes(input) ? "block" : "none";
+            }
+        }
+
+        trackVisitor();
+        initApp();
+    </script>
+</body>
+</html>
