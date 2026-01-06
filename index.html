@@ -43,7 +43,7 @@
         }
         .social-blue-box span { font-size: 13px; font-weight: bold; color: white; text-transform: uppercase; }
         .social-icons-wrapper { display: flex; gap: 20px; }
-        .social-icons-wrapper a { color: white; font-size: 20px; text-decoration: none; }
+        .social-icons-wrapper a { color: white; font-size: 20px; text-decoration: none; transition: 0.3s; }
 
         .promo-box {
             background: #181818;
@@ -66,7 +66,6 @@
         .feed-container { max-width: 600px; margin: 0 auto; padding: 10px; }
         .v-card { background: var(--card-bg); border-radius: 12px; overflow: hidden; margin-bottom: 30px; border: 1px solid #2a2a2a; }
         
-        /* Native Ad Styling */
         .native-ad-box { background: #1a1a1a; padding: 10px; border-radius: 12px; margin-bottom: 30px; border: 1px dashed var(--primary-blue); text-align: center; }
 
         .thumb-wrapper { position: relative; width: 100%; aspect-ratio: 16/9; background: #000; }
@@ -75,15 +74,15 @@
 
         .adult-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.95); backdrop-filter: blur(25px); z-index: 10; display: flex; flex-direction: column; align-items: center; justify-content: center; }
         .adult-label { background: #ff4444; padding: 5px 15px; border-radius: 4px; font-size: 13px; font-weight: bold; margin-bottom: 12px; }
-        .btn-show { background: white; color: black; border: none; padding: 8px 25px; border-radius: 20px; font-weight: bold; }
+        .btn-show { background: white; color: black; border: none; padding: 8px 25px; border-radius: 20px; font-weight: bold; cursor: pointer; }
 
         .card-info { padding: 18px; }
         .tag-row { display: flex; gap: 8px; margin-bottom: 12px; flex-wrap: wrap; }
         .tag { background: rgba(255,255,255,0.1); font-size: 10px; padding: 4px 10px; border-radius: 4px; color: var(--primary-blue); }
         .video-title { font-family: 'Li Ador Noirrit Bold', sans-serif; font-size: 18px; margin-bottom: 15px; }
 
-        .btn-ad { background: #2a2a2a; color: white; border: 1px solid #444; width: 100%; padding: 15px; border-radius: 10px; font-weight: bold; cursor: pointer; }
-        .btn-open { background: var(--primary-blue); color: #000; padding: 15px; width: 100%; border-radius: 10px; font-weight: bold; text-align: center; text-decoration: none; display: none; }
+        .btn-ad { background: #2a2a2a; color: white; border: 1px solid #444; width: 100%; padding: 15px; border-radius: 10px; font-weight: bold; cursor: pointer; font-family: 'BUILT TITLING BD', sans-serif; }
+        .btn-open { background: var(--primary-blue); color: #000; padding: 15px; width: 100%; border-radius: 10px; font-weight: bold; text-align: center; text-decoration: none; display: none; font-family: 'BUILT TITLING BD', sans-serif; }
         .btn-open.active { display: block; animation: pulse 1.5s infinite; }
 
         @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.02); } 100% { transform: scale(1); } }
@@ -95,9 +94,9 @@
         <div class="social-blue-box">
             <span>Our Social Community</span>
             <div class="social-icons-wrapper">
-                <a id="fb-btn" href="#"><i class="fab fa-facebook-f"></i></a>
-                <a id="wa-btn" href="#"><i class="fab fa-whatsapp"></i></a>
-                <a id="tg-btn" href="#"><i class="fab fa-telegram-plane"></i></a>
+                <a id="fb-btn" href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a id="wa-btn" href="#" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                <a id="tg-btn" href="#" target="_blank"><i class="fab fa-telegram-plane"></i></a>
             </div>
         </div>
     </div>
@@ -115,7 +114,9 @@
         </div>
     </div>
 
-    <div class="feed-container" id="mainFeed"></div>
+    <div class="feed-container" id="mainFeed">
+        <p style="text-align: center; color: var(--text-dim); font-family: 'Li Ador Noirrit Bold', sans-serif;">ভিডিও লোড হচ্ছে...</p>
+    </div>
 
     <script>
         const firebaseConfig = {
@@ -131,9 +132,20 @@
         firebase.initializeApp(firebaseConfig);
         const db = firebase.database();
         let adCounter = {};
-        const DIRECT_LINK = "https://otieu.com/4/10346483";
+        const DIRECT_LINK = "https://otieu.com/4/10346483"; // 1. Direct Link
 
         function initApp() {
+            // ফেসবুক, টেলিগ্রাম, হোয়াটসআপ লিংক সেটআপ
+            db.ref('socialLinks').on('value', snap => {
+                const links = snap.val();
+                if(links) {
+                    document.getElementById('fb-btn').href = links.fb || "#";
+                    document.getElementById('wa-btn').href = links.wa || "#";
+                    document.getElementById('tg-btn').href = links.tg || "#";
+                }
+            });
+
+            // আনলিমিটেড ভিডিও ডাটা লোড
             db.ref('contentDB').on('value', snap => {
                 const data = snap.val();
                 const feed = document.getElementById('mainFeed');
@@ -145,7 +157,7 @@
                     const item = data[key];
                     if(item.status !== "Active") return;
                     
-                    // Native Banner Placement (Every 3rd item)
+                    // 4. Native Banner (প্রতি ৩টি ভিডিও পর পর)
                     if (index > 0 && index % 3 === 0) {
                         const adDiv = document.createElement('div');
                         adDiv.className = 'native-ad-box';
@@ -164,7 +176,7 @@
                     card.innerHTML = `
                         <div class="thumb-wrapper">
                             ${overlay}
-                            <div class="views-count"><i class="fas fa-eye"></i> ${item.views || 0}</div>
+                            <div class="views-count"><i class="fas fa-eye"></i> ${formatViews(item.views)}</div>
                             <img src="${item.thumb}" class="thumb-img">
                         </div>
                         <div class="card-info">
@@ -181,8 +193,15 @@
             });
         }
 
+        function formatViews(num) {
+            if (!num) return '0';
+            if (num >= 1000000) return (num / 1000000).toFixed(1) + 'M';
+            if (num >= 1000) return (num / 1000).toFixed(1) + 'K';
+            return num;
+        }
+
         function processAd(key) {
-            // High CPM Strategy: Open Direct Link on Every Click
+            // ১. Direct Link ওপেন (High CPM)
             window.open(DIRECT_LINK, '_blank');
 
             const btn = document.getElementById(`btn-ad-${key}`);
@@ -200,7 +219,7 @@
                     btn.disabled = false;
                     btn.innerHTML = `Watch Ads (${adCounter[key]})`;
                 }
-            }, 1500);
+            }, 1200);
         }
 
         function revealThumb(key) { document.getElementById(`overlay-${key}`).style.display = 'none'; }
