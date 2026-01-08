@@ -1,240 +1,231 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="bn">
 <head>
-    <script src="https://quge5.com/88/tag.min.js" data-zone="199379" async data-cfasync="false"></script>
-    
-    <script>(function(s){s.dataset.zone='10423765',s.src='https://al5sm.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
+    <script>(function(s){s.dataset.zone='10432505',s.src='https://nap5k.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
+    <script>(function(s){s.dataset.zone='10432509',s.src='https://gizokraijaw.net/vignette.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
+    <script src='//libtl.com/sdk.js' data-zone='10346520' data-sdk='show_10346520'></script>
+    <meta name="monetag" content="ba7f6903d1cbdce61c183385b3356e1b">
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Premium Stream Portal</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <title>Viral Bot Store - Premium Portal</title>
     
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>
-
+    
     <style>
-        @font-face { font-family: 'Li Ador Noirrit Bold'; src: local('Li Ador Noirrit Bold'); }
-        @font-face { font-family: 'BUILT TITLING BD'; src: local('BUILT TITLING BD'); }
-
-        :root {
-            --bg-dark: #0f0f0f; 
-            --card-bg: #1e1e1e;
-            --primary-blue: #3ea6ff; 
-            --text-main: #ffffff; 
-            --text-dim: #aaaaaa;
+        :root { 
+            --primary: #581c87; 
+            --accent: linear-gradient(135deg, #6d28d9, #4f46e5); 
+            --bg: #020617; 
+            --card-bg: #0f172a; 
+            --white: #ffffff; 
+            --text-main: #f8fafc; 
+            --text-dim: #94a3b8; 
+            --input-bg: #1e293b;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: var(--bg); color: var(--text-main); font-family: 'BUILT TITLING BD', sans-serif; }
+        [lang="bn"], .bn-text { font-family: 'Li Ador Noirrit Bold', sans-serif; }
 
-        body { 
-            background-color: var(--bg-dark); 
-            color: var(--text-main); 
-            padding-bottom: 50px; 
-            font-family: 'BUILT TITLING BD', 'Li Ador Noirrit Bold', sans-serif;
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        .social-nav-container { padding: 15px 15px 5px 15px; }
-        .social-blue-box {
-            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
-            padding: 12px 20px; border-radius: 12px;
-            display: flex; justify-content: space-between; align-items: center;
-        }
-        .social-blue-box span { font-size: 13px; font-weight: bold; color: white; text-transform: uppercase; }
-        .social-icons-wrapper { display: flex; gap: 20px; }
-        .social-icons-wrapper a { color: white; font-size: 20px; text-decoration: none; transition: 0.3s; }
-
-        .promo-box {
-            background: #181818;
-            margin: 15px; padding: 25px 20px; border-radius: 15px;
-            text-align: center; border: 1px solid #333;
-        }
-        .promo-box h2 { font-size: 28px; font-weight: 900; color: var(--primary-blue); margin-bottom: 12px; }
-        .promo-desc-bn { font-family: 'Li Ador Noirrit Bold', sans-serif; font-size: 15px; color: #eee; line-height: 1.6; }
-        .promo-desc-en { font-size: 11px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px; margin-top: 8px; }
-
-        .search-wrapper { padding: 0 15px 15px 15px; }
-        .search-container { position: relative; }
-        .search-container input {
-            width: 100%; padding: 14px 45px 14px 20px; background: #2a2a2a;
-            border: 1px solid #333; border-radius: 30px; color: white; outline: none;
-            font-family: 'Li Ador Noirrit Bold', sans-serif;
-        }
-        .search-container .fa-search { position: absolute; right: 20px; top: 50%; transform: translateY(-50%); color: var(--text-dim); }
-
-        .feed-container { max-width: 600px; margin: 0 auto; padding: 10px; }
-        .v-card { background: var(--card-bg); border-radius: 12px; overflow: hidden; margin-bottom: 30px; border: 1px solid #2a2a2a; }
+        .sticky-top-container { position: sticky; top: 0; z-index: 1000; background: var(--bg); box-shadow: 0 4px 20px rgba(0,0,0,0.6); }
+        .banner-header { width: 100%; height: auto; display: block; border-bottom: 2px solid var(--primary); }
         
-        .native-ad-box { background: #1a1a1a; padding: 10px; border-radius: 12px; margin-bottom: 30px; border: 1px dashed var(--primary-blue); text-align: center; }
+        .social-bar {
+            background: rgba(30, 41, 59, 0.5);
+            margin: 10px 15px 0 15px;
+            padding: 8px 15px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid rgba(88, 28, 135, 0.3);
+        }
+        .social-bar span { font-size: 12px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px; }
+        .social-icons { display: flex; gap: 15px; }
+        .social-icons a { color: var(--white); font-size: 16px; transition: 0.3s; }
+        .social-icons a:hover { color: #a78bfa; }
 
-        .thumb-wrapper { position: relative; width: 100%; aspect-ratio: 16/9; background: #000; }
-        .thumb-img { width: 100%; height: 100%; object-fit: cover; }
-        .views-count { position: absolute; bottom: 10px; right: 10px; background: rgba(0, 0, 0, 0.7); color: var(--primary-blue); padding: 3px 10px; border-radius: 5px; font-size: 11px; }
+        .search-container { padding: 12px 15px; max-width: 600px; margin: 0 auto; }
+        .search-box input { width: 100%; padding: 12px 20px; border-radius: 12px; border: 1px solid var(--primary); background: var(--input-bg); color: white; outline: none; }
 
-        .adult-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.95); backdrop-filter: blur(25px); z-index: 10; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-        .adult-label { background: #ff4444; padding: 5px 15px; border-radius: 4px; font-size: 13px; font-weight: bold; margin-bottom: 12px; }
-        .btn-show { background: white; color: black; border: none; padding: 8px 25px; border-radius: 20px; font-weight: bold; cursor: pointer; }
+        .content-section { display: none; padding: 15px; padding-bottom: 120px; max-width: 600px; margin: 0 auto; }
+        .content-section.active { display: block; }
 
-        .card-info { padding: 18px; }
-        .tag-row { display: flex; gap: 8px; margin-bottom: 12px; flex-wrap: wrap; }
-        .tag { background: rgba(255,255,255,0.1); font-size: 10px; padding: 4px 10px; border-radius: 4px; color: var(--primary-blue); }
-        .video-title { font-family: 'Li Ador Noirrit Bold', sans-serif; font-size: 18px; margin-bottom: 15px; }
+        .v-card { background: var(--card-bg); border-radius: 20px; overflow: hidden; margin-bottom: 25px; border: 1px solid #1e293b; }
+        
+        .v-thumb { width: 100%; aspect-ratio: 16/9; position: relative; background: #000; overflow: hidden; cursor: pointer; }
+        .v-thumb img { width: 100%; height: 100%; object-fit: cover; display: none; }
+        .v-thumb.revealed img { display: block !important; }
+        .v-thumb.revealed .action-overlay { display: none !important; }
+        
+        .action-overlay { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.7); z-index: 4; }
+        .badge { position: absolute; top: 12px; left: 12px; background: var(--accent); color: white; padding: 5px 12px; border-radius: 8px; font-size: 10px; z-index: 5; }
+        
+        .v-info { padding: 18px; }
+        .view-count { font-size: 12px; color: var(--text-dim); margin-bottom: 10px; display: flex; align-items: center; gap: 5px; }
+        .btn-main { width: 100%; padding: 15px; border: none; border-radius: 12px; background: var(--accent); color: white; font-weight: 800; cursor: pointer; text-transform: uppercase; }
 
-        .btn-ad { background: #2a2a2a; color: white; border: 1px solid #444; width: 100%; padding: 15px; border-radius: 10px; font-weight: bold; cursor: pointer; font-family: 'BUILT TITLING BD', sans-serif; }
-        .btn-open { background: var(--primary-blue); color: #000; padding: 15px; width: 100%; border-radius: 10px; font-weight: bold; text-align: center; text-decoration: none; display: none; font-family: 'BUILT TITLING BD', sans-serif; }
-        .btn-open.active { display: block; animation: pulse 1.5s infinite; }
-
-        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.02); } 100% { transform: scale(1); } }
+        .nav-wrapper { position: fixed; bottom: 20px; left: 5%; right: 5%; background: rgba(15, 23, 42, 0.9); backdrop-filter: blur(15px); border-radius: 20px; border: 1px solid var(--primary); z-index: 1000; }
+        .bottom-nav { display: grid; grid-template-columns: 1fr 1fr 1fr; padding: 10px; }
+        .nav-item { display: flex; flex-direction: column; align-items: center; color: var(--text-dim); cursor: pointer; font-size: 11px; }
+        .nav-item.active { color: #a78bfa; }
     </style>
 </head>
 <body>
 
-    <div class="social-nav-container">
-        <div class="social-blue-box">
+    <div class="sticky-top-container">
+        <img src="https://i.postimg.cc/FswJ4vdD/IMG-20260107-051613.jpg" alt="Banner" class="banner-header">
+        
+        <div class="social-bar">
             <span>Our Social Community</span>
-            <div class="social-icons-wrapper">
-                <a id="fb-btn" href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                <a id="wa-btn" href="#" target="_blank"><i class="fab fa-whatsapp"></i></a>
-                <a id="tg-btn" href="#" target="_blank"><i class="fab fa-telegram-plane"></i></a>
+            <div class="social-icons">
+                <a id="fb-link" href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a id="tg-link" href="#" target="_blank"><i class="fab fa-telegram-plane"></i></a>
+                <a id="wa-link" href="#" target="_blank"><i class="fab fa-whatsapp"></i></a>
             </div>
         </div>
-    </div>
 
-    <div class="promo-box">
-        <h2>VIRAL VIDEO BOX</h2>
-        <p class="promo-desc-bn">সকল ধরনের ভাইরাল হওয়া ভিডিও এবং প্রিমিয়াম শর্ট ফিল্ম এখন এক জায়গায়।</p>
-        <p class="promo-desc-en">Viral Clips • Premium Movies • Short Films</p>
-    </div>
-
-    <div class="search-wrapper">
         <div class="search-container">
-            <input type="text" id="searchInput" placeholder="Search videos..." onkeyup="filterContent()">
-            <i class="fas fa-search"></i>
+            <div class="search-box"><input type="text" id="searchInput" placeholder="সার্চ করুন..." oninput="searchContent()"></div>
         </div>
     </div>
 
-    <div class="feed-container" id="mainFeed">
-        <p style="text-align: center; color: var(--text-dim); font-family: 'Li Ador Noirrit Bold', sans-serif;">ভিডিও লোড হচ্ছে...</p>
+    <section id="video" class="content-section active"><div id="video-list"></div></section>
+    <section id="image" class="content-section"><div id="image-list"></div></section>
+    <section id="short-film" class="content-section"><div id="short-film-list"></div></section>
+
+    <div class="nav-wrapper">
+        <nav class="bottom-nav">
+            <div class="nav-item active" onclick="tab('video', this)"><i class="fa-solid fa-bolt"></i><span>Video</span></div>
+            <div class="nav-item" onclick="tab('image', this)"><i class="fa-solid fa-images"></i><span>Image</span></div>
+            <div class="nav-item" onclick="tab('short-film', this)"><i class="fa-solid fa-clapperboard"></i><span>Shorts</span></div>
+        </nav>
     </div>
 
     <script>
         const firebaseConfig = {
-            apiKey: "AIzaSyBgdqnx_66alwh-VUMRcKFBePXGTZYAJAg",
-            authDomain: "deshi-viral-video.firebaseapp.com",
-            databaseURL: "https://deshi-viral-video-default-rtdb.firebaseio.com",
-            projectId: "deshi-viral-video",
-            storageBucket: "deshi-viral-video.firebasestorage.app",
-            messagingSenderId: "662634222290",
-            appId: "1:662634222290:web:d0d4ae45e581d095b9930b"
+            apiKey: "AIzaSyByCC_vYgY_vA92s6OHDbKhbkTqnycYb5Q",
+            authDomain: "stream-vibe-b4900.firebaseapp.com",
+            databaseURL: "https://stream-vibe-b4900-default-rtdb.firebaseio.com",
+            projectId: "stream-vibe-b4900",
+            storageBucket: "stream-vibe-b4900.firebasestorage.app",
+            messagingSenderId: "997470087286",
+            appId: "1:997470087286:web:3ba3facca244c2c6651757"
         };
-
         firebase.initializeApp(firebaseConfig);
         const db = firebase.database();
-        let adCounter = {};
-        const DIRECT_LINK = "https://otieu.com/4/10346483"; // 1. Direct Link
 
-        function initApp() {
-            // ফেসবুক, টেলিগ্রাম, হোয়াটসআপ লিংক সেটআপ
-            db.ref('socialLinks').on('value', snap => {
-                const links = snap.val();
-                if(links) {
-                    document.getElementById('fb-btn').href = links.fb || "#";
-                    document.getElementById('wa-btn').href = links.wa || "#";
-                    document.getElementById('tg-btn').href = links.tg || "#";
-                }
+        db.ref('socialLinks').on('value', snap => {
+            const links = snap.val();
+            if(links) {
+                document.getElementById('fb-link').href = links.fb || "#";
+                document.getElementById('tg-link').href = links.tg || "#";
+                document.getElementById('wa-link').href = links.wa || "#";
+            }
+        });
+
+        function tab(id, el) {
+            document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+            el.classList.add('active');
+            loadData(id);
+        }
+
+        function loadData(category) {
+            db.ref('contents').orderByChild('category').equalTo(category).on('value', snapshot => {
+                const list = document.getElementById(`${category}-list`);
+                let items = [];
+                snapshot.forEach(child => { items.push({ id: child.key, ...child.val() }); });
+                renderUI(items.reverse(), list, category);
             });
+        }
 
-            // আনলিমিটেড ভিডিও ডাটা লোড
-            db.ref('contentDB').on('value', snap => {
-                const data = snap.val();
-                const feed = document.getElementById('mainFeed');
-                feed.innerHTML = "";
-                if(!data) return;
-
-                let index = 0;
-                Object.keys(data).forEach(key => {
-                    const item = data[key];
-                    if(item.status !== "Active") return;
-                    
-                    // 4. Native Banner (প্রতি ৩টি ভিডিও পর পর)
-                    if (index > 0 && index % 3 === 0) {
-                        const adDiv = document.createElement('div');
-                        adDiv.className = 'native-ad-box';
-                        adDiv.innerHTML = `<p style="font-size:10px; color:#555; margin-bottom:5px;">ADVERTISEMENT</p>
-                                           <script>(function(s){s.dataset.zone='10423766',s.src='https://nap5k.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))<\/script>`;
-                        feed.appendChild(adDiv);
-                    }
-
-                    adCounter[key] = item.ads;
-                    const card = document.createElement('div');
-                    card.className = 'v-card';
-                    card.setAttribute('data-title', item.title);
-
-                    const overlay = item.adult === "Yes" ? `<div class="adult-overlay" id="overlay-${key}"><span class="adult-label">18+ CONTENT</span><button class="btn-show" onclick="revealThumb('${key}')">SHOW</button></div>` : '';
-
-                    card.innerHTML = `
-                        <div class="thumb-wrapper">
-                            ${overlay}
-                            <div class="views-count"><i class="fas fa-eye"></i> ${formatViews(item.views)}</div>
-                            <img src="${item.thumb}" class="thumb-img">
+        function renderUI(data, container, category) {
+            let html = '';
+            data.forEach(item => {
+                const id = item.id;
+                // ভিউজ সংখ্যা ফরম্যাট করা (০ থাকলে ০ দেখাবে)
+                const views = item.views || 0;
+                html += `
+                <div class="v-card" data-title="${item.title.toLowerCase()}">
+                    <div class="v-thumb" id="t-${id}" onclick="window.open('https://otieu.com/4/10346483', '_blank')">
+                        <span class="badge">${item.tag}</span>
+                        <img src="${item.thumb}">
+                        <div class="action-overlay"><i class="fa fa-play-circle" style="font-size:50px; color:white;"></i></div>
+                    </div>
+                    <div class="v-info">
+                        <h3 class="bn-text">${item.title}</h3>
+                        <div class="view-count">
+                            <i class="fa-solid fa-eye"></i> ${views} views
                         </div>
-                        <div class="card-info">
-                            <div class="tag-row">${item.tags.split(',').map(t => `<span class="tag">${t.trim()}</span>`).join('')}</div>
-                            <h3 class="video-title">${item.title}</h3>
-                            <div class="action-area">
-                                <button class="btn-ad" id="btn-ad-${key}" onclick="processAd('${key}')">Watch Ads (${item.ads})</button>
-                                <a href="${item.target}" target="_blank" class="btn-open" id="btn-open-${key}" onclick="trackOpen('${key}')">OPEN CONTENT</a>
-                            </div>
-                        </div>`;
-                    feed.appendChild(card);
-                    index++;
-                });
+                        <button class="btn-main" id="b-${id}" onclick="initAction('${id}', '${category}', '${item.contentLink}', ${item.adsCount})">
+                            Show Content
+                        </button>
+                    </div>
+                </div>`;
             });
+            container.innerHTML = html;
         }
 
-        function formatViews(num) {
-            if (!num) return '0';
-            if (num >= 1000000) return (num / 1000000).toFixed(1) + 'M';
-            if (num >= 1000) return (num / 1000).toFixed(1) + 'K';
-            return num;
-        }
-
-        function processAd(key) {
-            // ১. Direct Link ওপেন (High CPM)
-            window.open(DIRECT_LINK, '_blank');
-
-            const btn = document.getElementById(`btn-ad-${key}`);
-            const openBtn = document.getElementById(`btn-open-${key}`);
-            
-            adCounter[key]--;
-            btn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> LOADING...`;
-            btn.disabled = true;
-
-            setTimeout(() => {
-                if (adCounter[key] <= 0) {
-                    btn.style.display = 'none';
-                    openBtn.classList.add('active');
-                } else {
-                    btn.disabled = false;
-                    btn.innerHTML = `Watch Ads (${adCounter[key]})`;
-                }
-            }, 1200);
-        }
-
-        function revealThumb(key) { document.getElementById(`overlay-${key}`).style.display = 'none'; }
-        function trackOpen(key) { db.ref('contentDB/' + key + '/views').transaction(v => (v || 0) + 1); }
-        
-        function filterContent() {
+        function searchContent() {
             let input = document.getElementById('searchInput').value.toLowerCase();
             let cards = document.getElementsByClassName('v-card');
             for (let i = 0; i < cards.length; i++) {
-                let title = cards[i].getAttribute('data-title').toLowerCase();
+                let title = cards[i].getAttribute('data-title');
                 cards[i].style.display = title.includes(input) ? "block" : "none";
             }
         }
 
-        initApp();
+        let currentClickCount = {};
+        let isRevealed = {};
+
+        function countView(contentId) {
+            const viewRef = db.ref('contents/' + contentId + '/views');
+            viewRef.transaction((currentViews) => {
+                return (currentViews || 0) + 1;
+            });
+        }
+
+        function initAction(id, type, link, ads) {
+            const thumb = document.getElementById(`t-${id}`);
+            const btn = document.getElementById(`b-${id}`);
+
+            if (!isRevealed[id]) {
+                thumb.classList.add('revealed');
+                isRevealed[id] = true;
+                btn.innerText = "Unlock Full Video";
+                return;
+            }
+
+            if (type === 'image') {
+                countView(id);
+                window.open(link, '_blank');
+            } else {
+                if (!currentClickCount[id]) currentClickCount[id] = 0;
+                
+                if (currentClickCount[id] < ads) {
+                    if (typeof show_10346520 === 'function') {
+                        show_10346520().then(() => {
+                            currentClickCount[id]++;
+                            btn.innerText = `Unlock in ${ads - currentClickCount[id]} Ads`;
+                            if(currentClickCount[id] >= ads) btn.innerText = "Watch Now";
+                        });
+                    } else {
+                        currentClickCount[id]++;
+                        btn.innerText = `Unlock in ${ads - currentClickCount[id]} Ads`;
+                    }
+                } else {
+                    countView(id);
+                    window.location.href = link; 
+                }
+            }
+        }
+
+        loadData('video');
     </script>
 </body>
 </html>
